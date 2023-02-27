@@ -1,7 +1,7 @@
 :root {
-  --main-darklg: #1d2635;
-  --main-dark: #161d29;
-  --primary-color: #2f80ec;
+  --main-darklg: #fdd4b5;
+  --main-dark: #fdd4b5;
+  --primary-color: #0d0d0d;
   --main-light: #eeeeee;
 }
 
@@ -91,7 +91,7 @@ video {
   display: flex;
   flex-direction: column;
   flex: 0.3;
-  background-color: #242f41;
+  background-color: #fdb37b;
 }
 
 .main__chat_window {
@@ -165,7 +165,7 @@ video {
   font-size: 1.3rem;
   top: 17px;
   left: 28px;
-  color: #fff;
+  color: #080808;
 }
 
 @media (max-width: 700px) {
