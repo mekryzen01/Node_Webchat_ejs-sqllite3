@@ -7,6 +7,9 @@ router.get("/", (req, res) => {
 router.get("/register", (req, res) => {
     res.render("page/register")
 })
+router.get("/profile", (req, res) => {
+    res.render("page/profile")
+})
 router.get("/room/:room", (req, res) => {
     res.render("room", { roomId: req.params.room });
 });
@@ -20,7 +23,7 @@ router.get("/Adminindex", controller.showinfo)
 router.post("/delete/:id", controller.Deleteuser)
 router.get("/edituser/:id", controller.task_update_get)
 router.post("/edituser/:id", controller.Edituserbyid)
-router.get("/profile/:id", controller.task_update_get)
+// router.get("/_userheader/:id", controller.Profileuser)
 
 // Export router
 module.exports = router

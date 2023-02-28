@@ -9,6 +9,7 @@
                     <th scope="col">Email</th>
                     <th scope="col">Password</th>
                     <th scope="col">Phonenumber</th>
+                    <th scope="col">Address</th>
                     <th scope="col">Status</th>
                     <th class="d-print-none">Actions</th>
                 </tr>
@@ -27,6 +28,9 @@
                         </td>
                         <td>
                             <%= task.Phonenumber %>
+                        </td>
+                        <td>
+                            <%= task.Address %>
                         </td>
                         <% if (task.Status_ID==1) { %>
                             <td>Admin</td>

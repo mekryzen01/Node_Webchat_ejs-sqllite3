@@ -1,6 +1,6 @@
 <%- include("../partials/_adminheader") -%>
     <div class="container">
-        <form action="/edituser/<%= task.User_ID %>" method="post">
+        <form action="/edituser/<%= result.User_ID %>" method="post">
             <div class="row justify-content-center mt-3 ">
                 <div class="col-12 col-md-6 col-lg-6">
                     <label for="">Email :</label>
@@ -8,7 +8,7 @@
             </div>
             <div class="row justify-content-center mt-3">
                 <div class="col-12 col-md-6 col-lg-6">
-                    <input type="email" name="Email" class="form-control" value="<%= task.Email%>" id="">
+                    <input type="email" name="Email" class="form-control" value="<%= result.Email%>" id="">
                 </div>
             </div>
             <div class="row justify-content-center mt-3">
@@ -18,7 +18,7 @@
             </div>
             <div class="row justify-content-center mt-3">
                 <div class="col-12 col-md-6 col-lg-6">
-                    <input type="password" name="Password" class="form-control" value="<%= task.Password%>" id="">
+                    <input type="password" name="Password" class="form-control" value="<%= result.Password%>" id="">
                 </div>
             </div>
             <div class="row justify-content-center mt-3">
@@ -28,7 +28,7 @@
             </div>
             <div class="row justify-content-center mt-3">
                 <div class="col-12 col-md-6 col-lg-6">
-                    <input type="text" name="Phonenumber" class="form-control" value="<%= task.Phonenumber%>" id="">
+                    <input type="text" name="Phonenumber" class="form-control" value="<%= result.Phonenumber%>" id="">
                 </div>
             </div>
             <div class="row justify-content-center mt-3">
@@ -38,12 +38,12 @@
             </div>
             <div class="row justify-content-center mt-3">
                 <div class="col-12 col-md-6 col-lg-6">
-                    <input type="text" name="Address" class="form-control" value="<%= task.Address%>" id="">
+                    <input type="text" name="Address" class="form-control" value="<%= result.Address%>" id="">
                 </div>
             </div>
             <div class="row justify-content-center mt-3">
                 <div class="col-6 col-md-4 col-lg-4">
-                    <button type="submit" class="form-control btn btn-success">Update</button>
+                    <input type="submit" value="Update" class="form-control btn btn-success"/>
                 </div>
             </div>
         </form>

@@ -12,19 +12,7 @@ const Registeruser = (Email, Password, Phoneumber, Address, filename, callback) 
     });
 };
 
-const Edituser = (id, Email, Password, Phonenumber, Address, callback) => {
-    const sql = `UPDATE User SET Email='${Email}', Password='${Password}', Phonenumber='${Phonenumber}', Address='${Address}' WHERE (User_ID='${id}')`;
-    db.appdb.run(sql, [], (error, row) => {
-        if (error) {
-            console.log(row,"erorr")
-            callback(error.message);
-        } else {
-            console.log(row,"Success")
-            const successMessage = "successfully."
-            callback(successMessage);
-        }
-    });
-};
+
 
 const Login = (Email, Password, callback) => {
     const sql = `SELECT * FROM User WHERE Email = '${Email}' AND Password = '${Password}'`
@@ -61,7 +49,7 @@ const getinfo = (callback) => {
         }
     });
 };
-const getTask = (id, callback) => {
+const getuserByid = (id, callback) => {
     const sql = `SELECT * FROM User WHERE User_ID = ${id}`;
     db.appdb.get(sql, [], (error, row) => {
         if (error) {
@@ -70,12 +58,26 @@ const getTask = (id, callback) => {
         callback(row);
     });
 };
+const Edituser = (id, Email, Password, Phonenumber, Address, callback) => {
+    const sql = `UPDATE User SET Email=?, Password=?, Phonenumber=?, Address=? WHERE User_ID=?`;
+    const values = [Email, Password, Phonenumber, Address, id];
+    db.appdb.run(sql, values, (error) => {
+        if (error) {
+            console.log(error);
+            callback(error.message);
+        } else {
+            console.log("Success");
+            const successMessage = "successfully.";
+            callback(successMessage);
+        }
+    });
+};
 
 module.exports = {
     Registeruser,
     Login,
     getinfo,
     DeleteByid,
-    getTask,
+    getuserByid,
     Edituser
 }

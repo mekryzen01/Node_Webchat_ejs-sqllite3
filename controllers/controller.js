@@ -1,7 +1,5 @@
 const Model = require('../models/model')
 const multer = require('multer');
-const { v4: uuidv4 } = require("uuid");
-
 // Set up session middleware
 
 const upload = multer({
@@ -67,8 +65,6 @@ function showinfo(req, res) {
     });
 };
 
-
-
 function login(req, res) {
     const Email = req.body.Email;
     const Password = req.body.Password;
@@ -81,7 +77,7 @@ function login(req, res) {
             res.status(401).send("Invalid email or password");
         } else {
             if (row.Status_ID == 0) {
-                res.render("room", { roomId: req.params.room });
+                res.render("room", { roomId: req.params.room, id: row.User_ID });
             } else if (row.Status_ID == 1) {
                 Model.getinfo((err, dataall) => {
                     if (err) {
@@ -112,12 +108,14 @@ function Deleteuser(req, res) {
 
 }
 
-const task_update_get = (request, response) => {
-    const id = request.params.id;
-    Model.getTask(id, (result) => {
-        response.render('page/edituser', { task: result });
-    });
-};
+
+function Profileuser(req, res) {
+    const id = req.params.id
+    Model.getuserByid(id, (queryresult) => {
+        console.log(queryresult)
+        res.render("/_userheader", { queryresult })
+    })
+}
 
 function Edituserbyid(req, res) {
     const Email = req.body.Email
@@ -125,6 +123,7 @@ function Edituserbyid(req, res) {
     const Phonenumber = req.body.Phonenumber
     const Address = req.body.Address
     const id = req.params.id;
+    console.log(Email,Password,Phonenumber,Address,id);
     Model.Edituser(Email, Password, Phonenumber, Address, id, () => {
         Model.getinfo((err, dataall) => {
             if (err) {
@@ -138,6 +137,18 @@ function Edituserbyid(req, res) {
     })
 
 }
+function task_update_get(request, response) {
+    const id = request.params.id;
+    console.log(id)
+    Model.getuserByid(id, (result) => {
+        if (result) {
+            console.log(result);
+            response.render('page/edituser', {result });
+        } else {
+            console.log('User not found');
+        }
+    });
+};
 function Logout(req, res) {
     req.session.destroy()
     res.redirect("/")
@@ -151,7 +162,8 @@ module.exports = {
     showinfo,
     Deleteuser,
     task_update_get,
-    Edituserbyid
+    Edituserbyid,
+    Profileuser
 }
 ////////// สร้างตัวแปร sql User
 // const sql_crateuser = `CREATE TABLE IF NOT EXISTS User (
